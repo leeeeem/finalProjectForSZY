@@ -48,7 +48,7 @@
 
       <div class="dialog-container">
         <div class="dialog-title">
-          <h1>多维网站评估系统</h1>
+          <h1>多维度网站评估系统</h1>
         </div>
         <div class="dialog-search" style="margin-top: 15px;">
           <el-input placeholder="请输入内容" v-model="search" class="input-with-select">
@@ -96,7 +96,6 @@
 
 
       <span slot="footer" class="dialog-footer">
-        <el-button @click="handleDialogClose">取 消</el-button>
         <el-button type="primary" @click="handleDialogClose">确 定</el-button>
       </span>
 
@@ -108,6 +107,10 @@
   .dialog-container, .top-container {
     display: flex;
     justify-content: space-between;
+
+    .dialog-title {
+      color: lightgray;
+    }
 
     .top-title, .top-search {
       margin: 0 20px;
@@ -137,11 +140,19 @@
   .title-container {
     display: flex;
     justify-content: space-around;
-    align-items: baseline;
+    align-items: center;
 
-    .domain, .rank, .type {
-      line-height: 30px;
-      margin: 0 30px;
+    .domain {
+
+      .domain-name {
+        font-size: x-large;
+        margin: 5px 0;
+      }
+    }
+
+    .rank, .type, .update{
+      font-size: large;
+      margin: 5px 30px;
       height: 100%;
     }
   }
@@ -214,10 +225,23 @@
                 this.websiteDetailTable = []
                 data.results.name.forEach((item, index) => {
                   console.log("======table data======", data, index)
+                  let realValue = data.results.value[index]
+                  let realWeight = data.results.weight[index]
+                  console.log("=====================test==================", realValue, realWeight)
+                  if (realValue == 'inValid') {
+                    realValue = '无效值'
+                  } else if (realValue == 'updating') {
+                    realValue = '正在更新'
+                  }
+                  if (realWeight === 'inValid') {
+                    realWeight = '无效值'
+                  } else if (realWeight === 'updating') {
+                    realWeight = '正在更新'
+                  }
                   let obj = {
                     name: data.results.mapping[item],
-                    value: data.results.value[index],
-                    weight: data.results.weight[index]
+                    value: realValue,
+                    weight: realWeight
                   }
                   this.websiteDetailTable.push(obj)
                 })
@@ -278,10 +302,23 @@
           this.websiteDetailTable = []
           data.results.name.forEach((item, index) => {
             console.log("======table data======", data, index)
+            let realValue = data.results.value[index]
+            let realWeight = data.results.weight[index]
+            console.log("=====================test==================", realValue, realWeight)
+            if (realValue == 'inValid') {
+              realValue = '无效值'
+            } else if (realValue == 'updating') {
+              realValue = '正在更新'
+            }
+            if (realWeight === 'inValid') {
+              realWeight = '无效值'
+            } else if (realWeight === 'updating') {
+              realWeight = '正在更新'
+            }
             let obj = {
               name: data.results.mapping[item],
-              value: data.results.value[index],
-              weight: data.results.weight[index]
+              value: realValue,
+              weight: realWeight
             }
             this.websiteDetailTable.push(obj)
           })
