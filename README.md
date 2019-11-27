@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # szy_project
 
 > A Vue.js project
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# finalProjectForSZY
+>>>>>>> c59d77e739635428eab6ff9558b5118335d385e2
